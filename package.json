@@ -6,6 +6,7 @@
   "repository": "git@github.com:ejeba72/basic-typescript-server-4.git",
   "author": "Emmanuel Eni <eejeba@gmail.com>",
   "license": "MIT",
+  "type": "commonjs",
   "scripts": {
     "start": "node index",
     "dev": "tsc --watch & nodemon dist/index"
