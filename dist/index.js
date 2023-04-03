@@ -5,19 +5,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = require("dotenv");
+const path_1 = __importDefault(require("path"));
+// import bodyParser from "body-parser";
 (0, dotenv_1.config)();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT;
+// app.use(express.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+// app.use(bodyParser.json());
 app.get("/", (req, res) => {
     try {
-        console.log("get request");
-        res.status(200).send("hello, world");
+        console.log({ getRequest: "get request" });
+        res.status(200).sendFile(path_1.default.join(__dirname, './public/index.html'));
+        //   res.status(200).send(`
+        //   <form action="/" method="POST">
+        //   <label for="name">Name:</label>
+        //   <input type="text" id="name" name="name">
+        //   <button type="submit">Submit</button>
+        // </form>
+        //   `)
     }
     catch (err) {
         console.log(err.message);
         res.status(500).send(err);
     }
 });
+app.post("/", (req, res) => {
+    try {
+        console.log({
+            postRequest: "post request",
+            reqBody: req.body,
+            // heads: req.headers
+        });
+        // console.log("post request");
+        res.status(201).send({
+            feedbackToClient: "your form has been sent",
+            whatWasSent: req.body
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.send(err);
+    }
+});
 app.listen(PORT, () => {
-    console.log(`Server is attentively listening for requests @ port ${PORT}`);
+    console.log(`Server is attentively listening for requests @ 127.0.0.1:${PORT}`);
 });
