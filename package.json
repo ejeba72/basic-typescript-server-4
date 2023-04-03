@@ -1,0 +1,9 @@
+{
+  "name": "basic-typescript-server-4",
+  "version": "1.0.0",
+  "description": "This is me practising TypeScript and a host of other technologies.",
+  "main": "index.js",
+  "repository": "git@github.com:ejeba72/basic-typescript-server-4.git",
+  "author": "Emmanuel Eni <eejeba@gmail.com>",
+  "license": "MIT"
+}
