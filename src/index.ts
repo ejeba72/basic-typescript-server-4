@@ -1,9 +1,11 @@
 import express, { Express, Request, Response } from "express";
 import { config } from "dotenv";
 import path from "path";
-import devRoute from "./route/dev.route";
+import devRoute from "./routes/dev.route";
+import { mongoDB } from "./db/connection";
 
 config();
+mongoDB();
 
 const app: Express = express();
 const PORT = process.env.PORT;
