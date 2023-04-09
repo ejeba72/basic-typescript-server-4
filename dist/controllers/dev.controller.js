@@ -42,11 +42,18 @@ function postRequest(req, res) {
                 reqBody: req.body,
                 newDoc
             });
-            res.status(201).send({
-                feedbackToClient: "your form has been sent",
-                whatWasSent: req.body,
-                newDoc
-            });
+            // res.status(201).send({
+            //     feedbackToClient: "your form has been sent",
+            //     whatWasSent: req.body,
+            //     newDoc
+            //   });
+            function sendToClient() {
+                const signupResult = document.getElementById("signup");
+                const payload = newDoc;
+                signupResult.innerText = JSON.stringify(payload);
+            }
+            sendToClient();
+            res.status(201).sendFile(path_1.default.join(__dirname, "..", "public", "pages", "dev-signup-successful.page.html"));
         }
         catch (err) {
             console.log(err.message);
@@ -56,3 +63,4 @@ function postRequest(req, res) {
 }
 exports.postRequest = postRequest;
 // }
+// console.log(newDoc);

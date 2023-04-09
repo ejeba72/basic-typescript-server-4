@@ -27,14 +27,23 @@ import { devModel } from "../models/dev.model";
         reqBody: req.body,
         newDoc
       });
-      res.status(201).send({
-        feedbackToClient: "your form has been sent",
-        whatWasSent: req.body,
-        newDoc
-      });
+      // res.status(201).send({
+      //     feedbackToClient: "your form has been sent",
+      //     whatWasSent: req.body,
+      //     newDoc
+      //   });
+        function sendToClient() {
+          const signupResult = document.getElementById("signup") as HTMLParagraphElement;
+          const payload = newDoc;
+          signupResult.innerText = JSON.stringify(payload);
+        }
+        sendToClient();
+        res.status(201).sendFile(path.join(__dirname, "..", "public", "pages", "dev-signup-successful.page.html"));
     } catch (err: any) {
       console.log(err.message);
       res.send(err);
     }
   }
 // }
+
+// console.log(newDoc);

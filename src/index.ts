@@ -1,5 +1,5 @@
-import express, { Express, Request, Response } from "express";
 import path from "path";
+import express, { Express, Request, Response } from "express";
 import { config } from "dotenv";
 import { devRoute } from "./routes/dev.route";
 import { mongoDB } from "./db/connection";
@@ -12,7 +12,7 @@ const app: Express = express();
 const PORT = process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 app.use("/", homeRoute);
 app.use("/dev", devRoute);
 
